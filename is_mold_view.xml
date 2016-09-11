@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="is_mold_form_view">
+            <field name="name">is_mold_form_view</field>
+            <field name="model">is.mold</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="designation"/>
+                            <field name="project"/>
+                            <field name="client_id" /> 
+                            <field name="chef_projet_id"/>
+                            <field name="dossierf_id" context="{'default_project':project}" domain="[('project','=',project)]"/>
+                            <field name="nb_empreintes"/>
+                            <field name="moule_a_version"/>
+                            <field name="date_creation"/>
+                            <field name="date_fin"/>
+                            <field name="mouliste_id" domain="[('supplier','=',True),('is_company','=',True)]" /> 
+                            <field name="carcasse"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="is_mold_tree_view">
+            <field name="name">is_mold_tree_view</field>
+            <field name="model">is.mold</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="designation"/>
+                    <field name="project"/>
+                    <field name="client_id" /> 
+                    <field name="chef_projet_id"/>
+                    <field name="dossierf_id"   />
+                    <field name="nb_empreintes"/>
+                    <field name="moule_a_version"/>
+
+                    <field name="date_creation"/>
+                    <field name="date_fin"/>
+                    <field name="mouliste_id"  /> 
+                    <field name="carcasse"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="is_mold_filter_view" >
+            <field name="name">is_mold_filter_view</field>
+            <field name="model">is.mold</field>
+            <field name="arch" type="xml">
+                <search string="Recherche">
+                    <field name="name"/>
+                    <field name="project"/>
+                    <field name="client_id" /> 
+                    <field name="chef_projet_id"/>
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="is_mold_action">
+            <field name="name">Moules</field>
+            <field name="res_model">is.mold</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+  </data>
+</openerp>
