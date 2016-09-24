@@ -2,6 +2,7 @@
 
 from openerp import models,fields,api
 from openerp.tools.translate import _
+import datetime
 
 
 class is_mold(models.Model):
@@ -21,6 +22,15 @@ class is_mold(models.Model):
     date_fin        = fields.Date("Date de fin")
     mouliste_id     = fields.Many2one('res.partner', 'Mouliste')
     carcasse        = fields.Char("Carcasse")
+
+
+    def _date_creation():
+        now = datetime.date.today()         # Date du jour
+        return now.strftime('%Y-%m-%d')     # Formatage
+
+    _defaults = {
+        'date_creation':  _date_creation(),
+    }
 
 
     @api.depends('project','project.client_id','project.chef_projet_id')
