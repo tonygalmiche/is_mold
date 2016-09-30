@@ -9,7 +9,7 @@ class is_dossierf(models.Model):
     _order='name'    #Ordre de tri par defaut des listes
     _sql_constraints = [('name_uniq','UNIQUE(name)', u'Ce Dossier F existe déjà !')] 
 
-    name            = fields.Char("N°Dossier",size=20,required=True, select=True)
+    name            = fields.Char("N°Dossier",size=40,required=True, select=True)
     designation     = fields.Char("Désignation")
     project         = fields.Many2one('is.mold.project', 'Projet')
     client_id       = fields.Many2one('res.partner', 'Client'        , store=True, compute='_compute')

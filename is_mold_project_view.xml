@@ -13,7 +13,8 @@
                         <group>
                             <field name="name"/>
                             <field name="client_id" domain="[('customer','=',True),('is_company','=',True)]" /> 
-                            <field name="chef_projet_id"/>
+                            <!--<field name="chef_projet_id" domain="[('groups_id','in',62)]" />-->
+                            <field name="chef_projet_id" />
                         </group>
                         <group>
                             <field name="mold_ids" nolabel="1" readonly="1">
