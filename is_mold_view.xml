@@ -22,6 +22,7 @@
                             <field name="date_fin"/>
                             <field name="mouliste_id" domain="[('supplier','=',True),('is_company','=',True)]" /> 
                             <field name="carcasse"/>
+                            <field name="emplacement"/>
                         </group>
                     </sheet>
                 </form>
@@ -41,11 +42,11 @@
                     <field name="dossierf_id"   />
                     <field name="nb_empreintes"/>
                     <field name="moule_a_version"/>
-
                     <field name="date_creation"/>
                     <field name="date_fin"/>
                     <field name="mouliste_id"  /> 
                     <field name="carcasse"/>
+                    <field name="emplacement"/>
                 </tree>
             </field>
         </record>

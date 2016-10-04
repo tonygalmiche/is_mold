@@ -10,7 +10,7 @@ class is_mold(models.Model):
     _order='name'    #Ordre de tri par defaut des listes
     _sql_constraints = [('name_uniq','UNIQUE(name)', 'Ce moule existe deja')] #ATTENTION : Ne pas mettre d'accent dans le message
 
-    name            = fields.Char("Code",size=40,required=True, select=True)
+    name            = fields.Char("N°Moule",size=40,required=True, select=True)
     designation     = fields.Char("Désignation")
     project         = fields.Many2one('is.mold.project', 'Projet')
     client_id       = fields.Many2one('res.partner', 'Client'        , store=True, compute='_compute')
@@ -22,7 +22,7 @@ class is_mold(models.Model):
     date_fin        = fields.Date("Date de fin")
     mouliste_id     = fields.Many2one('res.partner', 'Mouliste')
     carcasse        = fields.Char("Carcasse")
-
+    emplacement     = fields.Char("Emplacement")
 
     def _date_creation():
         now = datetime.date.today()         # Date du jour
