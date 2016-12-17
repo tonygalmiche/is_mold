@@ -1,10 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_is_mold,access_is_mold,model_is_mold,,1,0,0,0
-access_is_mold_project,access_is_mold_project,model_is_mold_project,,1,0,0,0
-access_is_dossierf,access_is_dossierf,model_is_dossierf,,1,0,0,0
-
-access_gestionnaire_is_mold,acces_gestionnaires_is_mold,model_is_mold,is_pg_product.is_gestionnaire_donnees_techniques_group,1,1,1,1
-access_gestionnaire_is_mold_project,access_gestionnaire_is_mold_project,model_is_mold_project,is_pg_product.is_gestionnaire_donnees_techniques_group,1,1,1,1
-access_gestionnaire_is_dossierf,access_gestionnaire_is_dossierf,model_is_dossierf,is_pg_product.is_gestionnaire_donnees_techniques_group,1,1,1,1
-
-
+access_is_mold,access_is_mold,model_is_mold,base.group_user,1,0,0,0
+access_is_mold_project,access_is_mold_project,model_is_mold_project,base.group_user,1,0,0,0
+access_is_dossierf,access_is_dossierf,model_is_dossierf,base.group_user,1,0,0,0
+access_gestionnaire_is_mold,acces_gestionnaires_is_mold,model_is_mold,base.group_user,1,0,0,0
+access_gestionnaire_is_mold_project,access_gestionnaire_is_mold_project,model_is_mold_project,base.group_user,1,0,0,0
+access_gestionnaire_is_dossierf,access_gestionnaire_is_dossierf,model_is_dossierf,base.group_user,1,0,0,0
