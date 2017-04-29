@@ -18,10 +18,8 @@ class is_mold_project(models.Model):
 
     name           = fields.Char("Nom du projet",size=40,required=True, select=True)
     client_id      = fields.Many2one('res.partner', 'Client')
-
-
-    #chef_projet_id = fields.Many2one('res.users', 'Chef de projet', domain = _get_group_chef_de_projet)
     chef_projet_id = fields.Many2one('res.users', 'Chef de projet')
+    commentaire    = fields.Char("Commentaire")
 
 
     mold_ids       = fields.One2many('is.mold', 'project', u"Moules")
