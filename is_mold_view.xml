@@ -10,19 +10,30 @@
                 <form>
                     <sheet>
                         <group>
-                            <field name="name"/>
-                            <field name="designation"/>
-                            <field name="project"/>
-                            <field name="client_id" /> 
-                            <field name="chef_projet_id"/>
-                            <field name="dossierf_id" context="{'default_project':project}" domain="[('project','=',project)]"/>
-                            <field name="nb_empreintes"/>
-                            <field name="moule_a_version"/>
-                            <field name="date_creation"/>
-                            <field name="date_fin"/>
-                            <field name="mouliste_id" domain="[('supplier','=',True),('is_company','=',True)]" /> 
-                            <field name="carcasse"/>
-                            <field name="emplacement"/>
+                            <group>
+                                <field name="name"/>
+                                <field name="designation"/>
+                                <field name="project"/>
+                                <field name="client_id" /> 
+                                <field name="chef_projet_id"/>
+                                <field name="dossierf_id" context="{'default_project':project}" domain="[('project','=',project)]"/>
+                                <field name="nb_empreintes"/>
+                                <field name="moule_a_version"/>
+                                <field name="lieu_changement"   attrs="{'invisible': [('moule_a_version','!=', 'oui')]}"/>
+                                <field name="temps_changement"  attrs="{'invisible': [('moule_a_version','!=', 'oui')]}" widget="float_time"/>
+                                <field name="date_creation"/>
+                                <field name="date_fin"/>
+                                <field name="mouliste_id" domain="[('supplier','=',True),('is_company','=',True)]" /> 
+                                <field name="carcasse"/>
+                                <field name="emplacement"/>
+                            </group>
+                            <group string="Dateur">
+                                <field name="type_dateur"/>
+                                <field name="date_peremption" attrs="{'invisible': ['|',('type_dateur','==', 'dateur_laiton'),('type_dateur','==', False)]}"/>
+                                <field name="qt_dans_moule"   attrs="{'invisible': [('type_dateur','==', False)]}"/>
+                                <field name="diametre_laiton" attrs="{'invisible': [('type_dateur','!=', 'dateur_laiton')]}"/>
+                                <field name="diametre_fleche" attrs="{'invisible': [('type_dateur','!=', 'dateur_fleche')]}"/>
+                            </group>
                         </group>
                     </sheet>
                 </form>
@@ -42,6 +53,8 @@
                     <field name="dossierf_id"   />
                     <field name="nb_empreintes"/>
                     <field name="moule_a_version"/>
+                    <field name="lieu_changement"/>
+                    <field name="temps_changement"/>
                     <field name="date_creation"/>
                     <field name="date_fin"/>
                     <field name="mouliste_id"  /> 
@@ -59,6 +72,8 @@
                     <field name="project"/>
                     <field name="client_id" /> 
                     <field name="chef_projet_id"/>
+                    <field name="moule_a_version"/>
+                    <field name="lieu_changement"/>
                 </search>
             </field>
         </record>
