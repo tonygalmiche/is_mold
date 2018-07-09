@@ -54,12 +54,12 @@ class is_mold(models.Model):
         ], "Diamètre dateur fleche")
 
 
-    def _date_creation():
-        now = datetime.date.today()         # Date du jour
-        return now.strftime('%Y-%m-%d')     # Formatage
+#    def _date_creation():
+#        now = datetime.date.today()         # Date du jour
+#        return now.strftime('%Y-%m-%d')     # Formatage
 
     _defaults = {
-        'date_creation':  _date_creation(),
+        'date_creation': lambda *a: fields.datetime.now(),
     }
 
 
