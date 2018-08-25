@@ -26,12 +26,16 @@ class is_mold(models.Model):
     carcasse         = fields.Char("Carcasse")
     emplacement      = fields.Char("Emplacement")
     type_dateur      = fields.Selection([
-        ('dateur_grille', u'dateur à grille'),
-        ('dateur_laiton', u'dateur laiton'),
-        ('dateur_fleche', u'dateur à fleche')], "Type de dateur")
-    date_peremption  = fields.Date("Date de péremption")
-    qt_dans_moule    = fields.Integer("Quantité dans le moule")
-    diametre_laiton  = fields.Selection([
+            ('dateur_grille'    , u'dateur à grille'),
+            ('dateur_laiton'    , u'dateur laiton'),
+            ('dateur_fleche'    , u'dateur à fleche'),
+            ('dateur_specifique', u'dateur spécifique'),
+            ('pas_de_dateur'    , u'pas de dateur'),
+        ], "Type de dateur")
+    dateur_specifique = fields.Char("Commentaire sur dateur spécifique")
+    date_peremption   = fields.Date("Date de péremption")
+    qt_dans_moule     = fields.Integer("Quantité dans le moule")
+    diametre_laiton   = fields.Selection([
             ('d3' , u'Ø3'),
             ('d4' , u'Ø4'),
             ('d5' , u'Ø5'),

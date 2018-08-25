@@ -29,10 +29,11 @@
                             </group>
                             <group string="Dateur">
                                 <field name="type_dateur"/>
-                                <field name="date_peremption" attrs="{'invisible': ['|',('type_dateur','==', 'dateur_laiton'),('type_dateur','==', False)]}"/>
-                                <field name="qt_dans_moule"   attrs="{'invisible': [('type_dateur','==', False)]}"/>
-                                <field name="diametre_laiton" attrs="{'invisible': [('type_dateur','!=', 'dateur_laiton')]}"/>
-                                <field name="diametre_fleche" attrs="{'invisible': [('type_dateur','!=', 'dateur_fleche')]}"/>
+                                <field name="dateur_specifique" attrs="{'invisible': [('type_dateur','!=', 'dateur_specifique')]}"/>
+                                <field name="date_peremption"   attrs="{'invisible': ['|','|',('type_dateur','==', 'dateur_laiton'),('type_dateur','==', 'pas_de_dateur'),('type_dateur','==', False)]}"/>
+                                <field name="qt_dans_moule"     attrs="{'invisible': ['|',('type_dateur','==', False),('type_dateur','==', 'pas_de_dateur')]}"/>
+                                <field name="diametre_laiton"   attrs="{'invisible': [('type_dateur','!=', 'dateur_laiton')]}"/>
+                                <field name="diametre_fleche"   attrs="{'invisible': [('type_dateur','!=', 'dateur_fleche')]}"/>
                             </group>
                         </group>
                     </sheet>
