@@ -13,7 +13,8 @@
                         <group>
                             <field name="name"/>
                             <field name="client_id" domain="[('customer','=',True),('is_company','=',True)]" /> 
-                            <field name="chef_projet_id" />
+                            <field name="chef_projet_id"/>
+                            <field name="choix_modele"/>
                             <field name="commentaire"/>
                         </group>
                         <group>
@@ -39,6 +40,7 @@
                     <field name="name"/>
                     <field name="client_id" domain="[('customer','=',True),('is_company','=',True)]" /> 
                     <field name="chef_projet_id"/>
+                    <field name="choix_modele"/>
                 </tree>
             </field>
         </record>
@@ -50,6 +52,7 @@
                     <field name="name"/>
                     <field name="client_id"/>
                     <field name="chef_projet_id"/>
+                    <field name="choix_modele"/>
                 </search>
             </field>
         </record>
