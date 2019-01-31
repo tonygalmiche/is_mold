@@ -5,10 +5,43 @@ from openerp.tools.translate import _
 import datetime
 
 
+class is_mold_dateur(models.Model):
+    _name='is.mold.dateur'
+    _order='mold_id,type_dateur'
+
+    mold_id = fields.Many2one('is.mold', 'Moule', required=True, ondelete='cascade', readonly=True)
+    type_dateur = fields.Selection([
+            ('dateur_grille'    , u'dateur à grille'),
+            ('dateur_laiton'    , u'dateur laiton'),
+            ('dateur_fleche'    , u'dateur à fleche'),
+            ('dateur_specifique', u'dateur spécifique'),
+            ('pas_de_dateur'    , u'pas de dateur'),
+        ], "Type de dateur",required=True)
+    qt_dans_moule   = fields.Integer("Quantité dans le moule",required=True)
+    diametre_dateur = fields.Selection([
+            ('d3' , u'Ø3'),
+            ('d4' , u'Ø4'),
+            ('d5' , u'Ø5'),
+            ('d6' , u'Ø6'),
+            ('d8' , u'Ø8'),
+            ('d10', u'Ø10'),
+            ('d12', u'Ø12'),
+            ('d14', u'Ø14'),
+            ('d16', u'Ø16'),
+            ('d18', u'Ø18'),
+            ('d20', u'Ø20'),
+        ], "Diamètre dateur")
+    date_peremption = fields.Date("Date de péremption")
+    commentaire     = fields.Char("Commentaire")
+
+
 class is_mold(models.Model):
     _name='is.mold'
     _order='name'    #Ordre de tri par defaut des listes
     _sql_constraints = [('name_uniq','UNIQUE(name)', 'Ce moule existe deja')] #ATTENTION : Ne pas mettre d'accent dans le message
+
+
+
 
     name             = fields.Char("N°Moule",size=40,required=True, select=True)
     designation      = fields.Char("Désignation")
@@ -56,11 +89,9 @@ class is_mold(models.Model):
             ('d18', u'Ø18'),
             ('d20', u'Ø20'),
         ], "Diamètre dateur fleche")
+    dateur_ids     = fields.One2many('is.mold.dateur', 'mold_id', u"Dateurs")
+    dateur_ids_vsb = fields.Boolean('Dateurs', store=False, compute='_compute_dateur_ids_vsb')
 
-
-#    def _date_creation():
-#        now = datetime.date.today()         # Date du jour
-#        return now.strftime('%Y-%m-%d')     # Formatage
 
     _defaults = {
         'date_creation': lambda *a: fields.datetime.now(),
@@ -74,6 +105,17 @@ class is_mold(models.Model):
                 obj.client_id      = obj.project.client_id
                 obj.chef_projet_id = obj.project.chef_projet_id
 
+
+    @api.depends('name')
+    def _compute_dateur_ids_vsb(self):
+        for obj in self:
+            uid=self._uid
+            user=self.env['res.users'].browse(uid)
+            company=user.company_id
+            vsb=False
+            if company.is_base_principale:
+                vsb=True
+            obj.dateur_ids_vsb=vsb
 
 
     def copy(self, cr, uid, id, default=None, context=None):

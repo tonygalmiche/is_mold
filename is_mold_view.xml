@@ -26,6 +26,7 @@
                                 <field name="mouliste_id" domain="[('supplier','=',True),('is_company','=',True)]" /> 
                                 <field name="carcasse"/>
                                 <field name="emplacement"/>
+                                <field name="dateur_ids_vsb" invisible="1"/>
                             </group>
                             <group string="Dateur">
                                 <field name="type_dateur"/>
@@ -35,6 +36,18 @@
                                 <field name="diametre_laiton"   attrs="{'invisible': [('type_dateur','!=', 'dateur_laiton')]}"/>
                                 <field name="diametre_fleche"   attrs="{'invisible': [('type_dateur','!=', 'dateur_fleche')]}"/>
                             </group>
+                        </group>
+
+                        <group  string="Dateurs" attrs="{'invisible': [('dateur_ids_vsb', '!=', True)]}">
+                            <field name="dateur_ids" nolabel="1" >
+                                <tree editable="bottom">
+                                    <field name="type_dateur"/>
+                                    <field name="qt_dans_moule"/>
+                                    <field name="diametre_dateur"/>
+                                    <field name="date_peremption"/>
+                                    <field name="commentaire"/>
+                                </tree>
+                            </field>
                         </group>
                     </sheet>
                 </form>
