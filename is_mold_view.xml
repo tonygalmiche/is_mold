@@ -21,6 +21,7 @@
                                 <field name="moule_a_version"/>
                                 <field name="lieu_changement"   attrs="{'invisible': [('moule_a_version','!=', 'oui')]}"/>
                                 <field name="temps_changement"  attrs="{'invisible': [('moule_a_version','!=', 'oui')]}" widget="float_time"/>
+                                <field name="nettoyer"/>
                                 <field name="date_creation"/>
                                 <field name="date_fin"/>
                                 <field name="mouliste_id" domain="[('supplier','=',True),('is_company','=',True)]" /> 

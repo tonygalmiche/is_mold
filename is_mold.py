@@ -53,6 +53,7 @@ class is_mold(models.Model):
     moule_a_version  = fields.Selection([('oui', u'Oui'),('non', u'Non')], "Moule à version")
     lieu_changement  = fields.Selection([('sur_presse', u'sur presse'),('en_mecanique', u'en mécanique')], "Lieu de changement")
     temps_changement = fields.Float("Temps de changement de la version (H)")
+    nettoyer         = fields.Boolean('Nettoyage moule avant production')
     date_creation    = fields.Date("Date de création")
     date_fin         = fields.Date("Date de fin")
     mouliste_id      = fields.Many2one('res.partner', 'Mouliste')
