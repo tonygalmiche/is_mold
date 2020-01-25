@@ -35,4 +35,16 @@ class is_dossierf(models.Model):
         return super(is_mold, self).copy(cr, uid, id, default=default, context=context)
 
 
+    @api.multi
+    def action_acceder_dossierf(self):
+        for obj in self:
+            return {
+                'name': "Dossier F",
+                'view_mode': 'form',
+                'view_type': 'form',
+                'res_model': 'is.dossierf',
+                'type': 'ir.actions.act_window',
+                'res_id': obj.id,
+                'domain': '[]',
+            }
 

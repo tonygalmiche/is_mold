@@ -26,6 +26,15 @@
                                 </tree>
                             </field>
                         </group>
+                        <group>
+                            <field name="dossierf_ids" nolabel="1" readonly="1" attrs="{'invisible': [('dossierf_ids', '=', [])]}">
+                                <tree>
+                                    <button string="Dossiers F"   name="action_acceder_dossierf"  type="object" icon="gtk-zoom-in" />
+                                    <field name="name"/>
+                                    <field name="designation"/>
+                                </tree>
+                            </field>
+                        </group>
                     </sheet>
                 </form>
             </field>

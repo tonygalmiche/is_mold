@@ -23,8 +23,9 @@ class is_mold_project(models.Model):
             ('1', u'1 - Moule par défaut hors automobile'),
             ('2', u'2 - Moule par défaut automobile'),
         ], u"Choix du modèle",required=True)
-    commentaire = fields.Char("Commentaire")
-    mold_ids    = fields.One2many('is.mold', 'project', u"Moules")
+    commentaire  = fields.Char("Commentaire")
+    mold_ids     = fields.One2many('is.mold'    , 'project', u"Moules")
+    dossierf_ids = fields.One2many('is.dossierf', 'project', u"Dossiers F")
 
 
     def copy(self, cr, uid, id, default=None, context=None):
