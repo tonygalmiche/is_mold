@@ -134,8 +134,11 @@ class is_mold(models.Model):
     @api.multi
     def actualiser_chef_de_projet_action(self):
         for obj in self:
-            if not obj.client_id or not obj.chef_projet_id:
-                obj._compute_chef_projet_id
+            if obj.project:
+                if not obj.client_id:
+                    obj.client_id = obj.project.client_id.id
+                if not obj.chef_projet_id:
+                    obj.chef_projet_id = obj.project.chef_projet_id.id
 
 
     @api.multi
