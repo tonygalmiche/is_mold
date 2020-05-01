@@ -46,8 +46,8 @@ class is_mold(models.Model):
     name             = fields.Char("N°Moule",size=40,required=True, select=True)
     designation      = fields.Char("Désignation")
     project          = fields.Many2one('is.mold.project', 'Projet')
-    client_id        = fields.Many2one('res.partner', 'Client'        , store=True, compute='_compute')
-    chef_projet_id   = fields.Many2one('res.users'  , 'Chef de projet', store=True, compute='_compute')
+    client_id        = fields.Many2one('res.partner', 'Client'        , store=True, compute='_compute_chef_projet_id')
+    chef_projet_id   = fields.Many2one('res.users'  , 'Chef de projet', store=True, compute='_compute_chef_projet_id')
     dossierf_id      = fields.Many2one('is.dossierf', 'Dossier F')
     nb_empreintes    = fields.Char("Nb empreintes", help="Nombre d'empreintes du moule (Exemple : 1+1)")
     moule_a_version  = fields.Selection([('oui', u'Oui'),('non', u'Non')], "Moule à version")
@@ -100,7 +100,7 @@ class is_mold(models.Model):
 
 
     @api.depends('project','project.client_id','project.chef_projet_id')
-    def _compute(self):
+    def _compute_chef_projet_id(self):
         for obj in self:
             if obj.project:
                 obj.client_id      = obj.project.client_id
@@ -129,6 +129,13 @@ class is_mold(models.Model):
         })
         return super(is_mold, self).copy(cr, uid, id, default=default,
             context=context)
+
+
+    @api.multi
+    def actualiser_chef_de_projet_action(self):
+        for obj in self:
+            if not obj.client_id or not obj.chef_projet_id:
+                obj._compute_chef_projet_id
 
 
     @api.multi
