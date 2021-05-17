@@ -32,7 +32,8 @@
                                 <field name="project"/>
                                 <field name="client_id" /> 
                                 <field name="chef_projet_id"/>
-                                <field name="dossierf_id" context="{'default_project':project}" domain="[('project','=',project)]"/>
+                                <field name="dossierf_id"  context="{'default_project':project}" domain="[('project','=',project)]"/>
+                                <field name="dossierf_ids" context="{'default_project':project}" domain="[('project','=',project)]" widget="many2many_tags"/>
                                 <field name="nb_empreintes"/>
                                 <field name="moule_a_version"/>
                                 <field name="lieu_changement"   attrs="{'invisible': [('moule_a_version','!=', 'oui')]}"/>
@@ -72,7 +73,8 @@
                     <field name="project"/>
                     <field name="client_id" /> 
                     <field name="chef_projet_id"/>
-                    <field name="dossierf_id"   />
+                    <field name="dossierf_id"/>
+                    <field name="dossierf_ids" widget="many2many_tags"/>
                     <field name="nb_empreintes"/>
                     <field name="moule_a_version"/>
                     <field name="lieu_changement"/>
@@ -94,6 +96,8 @@
                     <field name="project"/>
                     <field name="client_id" /> 
                     <field name="chef_projet_id"/>
+                    <field name="dossierf_id"/>
+                    <field name="dossierf_ids"/>
                     <field name="moule_a_version"/>
                     <field name="lieu_changement"/>
                 </search>
